@@ -1,25 +1,24 @@
 import { prisma } from "../lib/prisma";
+import { userResponseListSerializer, userResponseSerializer } from "../serializers/user.serializers";
 
 export const getUsersService = async () => {
   const users = await prisma.user.findMany();
 
-  return users
+  const validatedUsers = userResponseListSerializer.validate(users, {
+    stripUnknown: true
+  })
+
+  return validatedUsers
 };
 
 export const createUserService = async (data: any) => {
-  const findUser = await prisma.user.findUnique({
-    where: {
-      email: data.email
-    }
-  })
-
-  if (findUser) {
-    return false
-  }
-
   const createdUser = await prisma.user.create({
     data
   })
 
-  return createdUser
+  const validatedUser = userResponseSerializer.validate(createdUser, {
+    stripUnknown: true
+  })
+
+  return validatedUser
 }
