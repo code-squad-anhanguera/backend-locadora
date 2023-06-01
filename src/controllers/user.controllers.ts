@@ -8,7 +8,7 @@ export const getUsersController = async (req: Request, res: Response) => {
 };
 
 export const createUserController = async (req: Request, res: Response) => {
-  const data = await createUserService(req.validatedBody);
+  const data = await createUserService(req.body);
 
   if (!data) return res.status(400).json({ message: "User already exists" });
 

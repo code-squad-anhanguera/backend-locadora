@@ -8,7 +8,7 @@ export const getMoviesController = async (req: Request, res: Response) => {
 };
 
 export const createMoviesController = async (req: Request, res: Response) => {
-  const data = await createMovieService(req.validatedBody);
+  const data = await createMovieService(req.body);
 
   return res.status(201).json(data)
 };

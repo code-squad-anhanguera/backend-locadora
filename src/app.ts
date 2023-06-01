@@ -4,6 +4,7 @@ import express from "express";
 
 import { userRoutes } from "./routes/user.routes";
 import { authRoutes } from "./routes/auth.routes";
+import { classificationRoutes } from "./routes/classification.routes";
 import { movieRoutes } from "./routes/movie.routes";
 import { handleError } from "./errors";
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use("/users", userRoutes);
 app.use("/auth", authRoutes);
+app.use("/classification", classificationRoutes);
 app.use("/movies", movieRoutes);
 
 app.use(handleError);
