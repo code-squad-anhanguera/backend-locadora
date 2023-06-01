@@ -8,13 +8,13 @@ export class AppError extends Error {
     this.statusCode = statusCode;
     this.message = message;
   }
-}
+};
 
 export const handleError = (err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof AppError)
-    return res.status(err.statusCode).json({ message: err.message })
+    return res.status(err.statusCode).json({ message: err.message });
 
   console.log(err.message);
 
-  return res.status(500).json({ message: err.message })
-}
+  return res.status(500).json({ message: err.message });
+};

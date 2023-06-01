@@ -10,8 +10,8 @@ export const validateSerializerMiddleware = (seriazer: AnySchema) => async (req:
 
     req.validatedBody = validate;
 
-    next()
+    next();
   } catch (err: any) {
-    return res.status(400).json({ message: err.message })
-  }
-}
+    return res.status(400).json({ message: err.message });
+  };
+};
