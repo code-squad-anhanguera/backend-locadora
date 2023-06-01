@@ -9,11 +9,11 @@ export const classificationIdExistsMiddleware = async (req: Request, res: Respon
     where: {
       id: classificationId
     }
-  })
+  });
 
   if (!findClassification) {
     throw new AppError("This classification does not exists", 404)
-  }
+  };
 
   next();
-}
+};

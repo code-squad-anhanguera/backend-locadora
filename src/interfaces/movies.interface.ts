@@ -4,13 +4,13 @@ export interface iMovieRequest {
   studio: string;
   classificationId: number;
   genre: string;
-}
+};
 
 export interface iMovieResponse extends iMovieRequest {
   id: string;
   createdAt: Date;
   updatedAt: Date;
-}
+};
 
 export interface iMovieUpdate {
   name?: string;
@@ -18,4 +18,4 @@ export interface iMovieUpdate {
   studio?: string;
   classificationId?: string;
   genre?: string;
-}
+};

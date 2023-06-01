@@ -1,3 +1,4 @@
+import { iMovieRequest } from "../interfaces/movies.interface";
 import { prisma } from "../lib/prisma";
 
 export const getMoviesService = async () => {
@@ -6,20 +7,16 @@ export const getMoviesService = async () => {
   return movies
 }
 
-export const createMovieService = async (data: any) => {
-  const findMovie = await prisma.movie.findUnique({
-    where: {
-      name: data.name
-    }
-  })
-
-  if (findMovie) {
-    return false
-  }
-
+export const createMovieService = async ({ name, description, studio, classificationId, genre }: iMovieRequest) => {
   const createMovie = await prisma.movie.create({
-    data
-  })
+    data: {
+      name,
+      description,
+      studio,
+      classificationId,
+      genre
+    }
+  });
 
-  return createMovie
-}
+  return createMovie;
+};

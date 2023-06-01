@@ -9,11 +9,11 @@ export const movieAlreadyExistsMiddleware = async (req: Request, res: Response, 
     where: {
       name
     }
-  })
+  });
 
   if (findMovie) {
-    throw new AppError("This movie already exists", 409)
-  }
+    throw new AppError("This movie already exists", 409);
+  };
 
   next();
-}
+};

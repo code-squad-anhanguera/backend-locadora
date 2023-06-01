@@ -8,10 +8,11 @@ export const userAlreadyExistsMiddleware = async (req: Request, res: Response, n
     where: {
       email: user.email
     }
-  })
+  });
 
-  if (findUser)
-    return res.status(409).json({ message: "User already exists" })
+  if (findUser) {
+    return res.status(409).json({ message: "User already exists" });
+  };
 
-  next()
-}
+  next();
+};
