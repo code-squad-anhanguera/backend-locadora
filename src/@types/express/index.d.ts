@@ -1,3 +1,4 @@
+import { Movie } from "@prisma/client";
 import { iMovieRequest } from "../../interfaces/movies.interface";
 import { iUserRequest } from "../../interfaces/user.interface";
 
@@ -9,7 +10,8 @@ declare global {
         id: string;
         email: string;
         isAdm: boolean;
-      }
+      },
+      movie: Movie
     }
   }
 }

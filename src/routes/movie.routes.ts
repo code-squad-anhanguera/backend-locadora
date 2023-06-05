@@ -5,14 +5,14 @@ import { validateAdmUserMiddleware } from "../middlewares/validateAdmUser.middle
 import { validateSerializerMiddleware } from "../middlewares/validateSerializer.middleware";
 import { movieAlreadyExistsMiddleware } from "../middlewares/movie/movieAlreadyExists.middleware";
 import { classificationIdExistsMiddleware } from "../middlewares/movie/classificationIdExists.middleware";
+import { validateMovieIdMiddleware } from "../middlewares/movie/validateMovieId.middleware";
 
-import { movieRequestSerializer } from "../serializers/movie.serializers";
+import { movieRequestSerializer, movieUpdateSerializer } from "../serializers/movie.serializers";
 
-import { createMoviesController, getMoviesController } from "../controllers/movie.controllers";
+import { createMoviesController, deleteMovieController, getMoviesController, getOneMovieController, updateMovieController } from "../controllers/movie.controllers";
 
 export const movieRoutes = Router();
 
-movieRoutes.get("", getMoviesController);
 movieRoutes.post(
   "",
   verifyTokenMiddleware,
@@ -21,4 +21,26 @@ movieRoutes.post(
   movieAlreadyExistsMiddleware,
   classificationIdExistsMiddleware,
   createMoviesController
+);
+movieRoutes.get("", getMoviesController);
+movieRoutes.get(
+  "/:id",
+  verifyTokenMiddleware,
+  validateMovieIdMiddleware,
+  getOneMovieController
+);
+movieRoutes.patch(
+  "/:id",
+  verifyTokenMiddleware,
+  validateAdmUserMiddleware,
+  validateSerializerMiddleware(movieUpdateSerializer),
+  validateMovieIdMiddleware,
+  updateMovieController
+);
+movieRoutes.delete(
+  "/:id",
+  verifyTokenMiddleware,
+  validateAdmUserMiddleware,
+  validateMovieIdMiddleware,
+  deleteMovieController
 );
