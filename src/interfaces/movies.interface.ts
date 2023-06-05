@@ -16,6 +16,6 @@ export interface iMovieUpdate {
   name?: string;
   description?: string;
   studio?: string;
-  classificationId?: string;
+  classificationId?: number;
   genre?: string;
 };
